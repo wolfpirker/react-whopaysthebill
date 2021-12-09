@@ -1,5 +1,6 @@
 import { useRef, useState, useContext } from "react";
 import { MyContext } from "../context";
+import { Button, Form, Alert } from "react-bootstrap";
 
 const Screen1 = () => {
   const context = useContext(MyContext);
@@ -35,40 +36,70 @@ const Screen1 = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Add player name"
-        name="player"
-        ref={textInput}
-      />
+      <Form onSubmit={handleSubmit} className="mt-4">
+        <Form.Group>
+          <Form.Control
+            type="text"
+            placeholder="Add player name"
+            name="player"
+            ref={textInput}
+          />
+        </Form.Group>
 
-      <ul className="list-group">
-        {context.state.players.map((item, idx) => (
-          <li
-            key={idx}
-            className="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
-          >
-            {item}
-            <span
-              className="badge badge-danger"
-              onClick={() => context.removePlayer(idx)}
+        {error[0] ? <Alert variant="danger">{error[1]}</Alert> : null}
+
+        <ul className="list-group">
+          {context.state.players.map((item, idx) => (
+            <li
+              key={idx}
+              className="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
             >
-              x
-            </span>
-          </li>
-        ))}
-      </ul>
+              {item}
+              <span
+                className="badge badge-danger"
+                onClick={() => context.removePlayer(idx)}
+              >
+                x
+              </span>
+            </li>
+          ))}
+        </ul>
 
-      <button className="miami" onClick={handleSubmit}>
-        Add a Player
-      </button>
+        <button className="miami" onClick={handleSubmit}>
+          Add a Player
+        </button>
 
-      <div
-        className="action_button animate__animated animate__fadeIn"
-        onClick={() => context.next()}
-      >
-        NEXT
-      </div>
+        {context.state.players && context.state.players.length > 0 ? (
+          <>
+            <hr />
+            <div>
+              <ul className="list-group">
+                {context.state.players.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="list-group-item d-flex justify-content-between align-items-center list-group-item-action"
+                  >
+                    {item}
+                    <span
+                      className="badge badge-danger"
+                      onClick={() => alert("remove")}
+                    >
+                      x
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        ) : null}
+
+        <div
+          className="action_button animate__animated animate__fadeIn"
+          onClick={() => context.next()}
+        >
+          NEXT
+        </div>
+      </Form>
     </div>
   );
 };
