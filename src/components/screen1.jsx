@@ -1,6 +1,6 @@
 import { useRef, useState, useContext } from "react";
 import { MyContext } from "../context";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 
 const Screen1 = () => {
   const context = useContext(MyContext);
@@ -65,7 +65,7 @@ const Screen1 = () => {
           ))}
         </ul>
 
-        <button className="miami" onClick={handleSubmit}>
+        <button className="miami" variant="primary" onClick={handleSubmit}>
           Add a Player
         </button>
 
@@ -82,23 +82,23 @@ const Screen1 = () => {
                     {item}
                     <span
                       className="badge badge-danger"
-                      onClick={() => alert("remove")}
+                      onClick={() => context.removePlayer(idx)}
                     >
                       x
                     </span>
                   </li>
                 ))}
               </ul>
+
+              <div
+                className="action_button animate__animated animate__fadeIn"
+                onClick={() => context.next()}
+              >
+                NEXT
+              </div>
             </div>
           </>
         ) : null}
-
-        <div
-          className="action_button animate__animated animate__fadeIn"
-          onClick={() => context.next()}
-        >
-          NEXT
-        </div>
       </Form>
     </div>
   );

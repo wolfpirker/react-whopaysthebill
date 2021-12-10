@@ -1,6 +1,9 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
-import { SwitchTransition, CSSTransition } from 'react-transition-group';
+// import { SwitchTransition, CSSTransition } from 'react-transition-group';
+
 
 import 'animate.css';
 import { useContext } from 'react'

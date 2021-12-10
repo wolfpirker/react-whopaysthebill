@@ -45,9 +45,12 @@ h1 {
   }
   
   .action_button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+    position: relative;
+    width:180px;
+    align-self: flex-end;
+    bottom: 0.1;
+    right: 0.8;
+    margin-top: 20px;
     background: #dc3eb1;
     color: white;
     padding: 15px 40px;
